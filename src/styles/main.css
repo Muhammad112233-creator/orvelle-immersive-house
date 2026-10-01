@@ -1,0 +1,113 @@
+@import './_fonts.css';
+@import './_reset.css';
+@import './_tokens.css';
+
+/* ---------------------------------------------------------------------------
+   Document shell
+   --------------------------------------------------------------------------- */
+
+html {
+  font-family: 'WorkSans', Helvetica, Arial, sans-serif;
+  font-size: var(--base-text);
+  font-weight: 400;
+  line-height: 1.1em;
+  color: var(--ui-color-white);
+  background: var(--ui-color-bg-primary);
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+body {
+  position: fixed;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+}
+
+::selection { color: var(--ui-color-bg-primary); background: rgba(255, 255, 255, 0.8); }
+
+img {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+figure img { user-select: none; -webkit-user-drag: none; }
+
+/* ---------------------------------------------------------------------------
+   Layout primitives
+   --------------------------------------------------------------------------- */
+
+.ui {
+  max-width: 100vw;
+  overflow-x: clip;
+}
+.ui.hidden-ui { display: none; }
+
+.webgl-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: clip;
+  user-select: none;
+  contain: strict;
+}
+.webgl-canvas { display: block; outline: none; }
+
+.view {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: clip;
+}
+.view a,
+.view button { pointer-events: auto; }
+
+/* The whole stage waits politely while heavy assets stream in. */
+.action-loading,
+.action-loading * { cursor: progress !important; }
+
+/* ---------------------------------------------------------------------------
+   Shared transition classes used by <Transition> wrappers
+   --------------------------------------------------------------------------- */
+
+.fade-enter-active,
+.fade-leave-active { transition: opacity .45s ease; }
+.fade-enter-from,
+.fade-leave-to { opacity: 0; }
+
+.fade-slow-enter-active { transition: opacity 1.1s ease .1s; }
+.fade-slow-leave-active { transition: opacity .5s ease; }
+.fade-slow-enter-from,
+.fade-slow-leave-to { opacity: 0; }
+
+/* ---------------------------------------------------------------------------
+   Accessibility
+   --------------------------------------------------------------------------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ui-color-yellow);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}

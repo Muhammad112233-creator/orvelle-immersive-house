@@ -1,0 +1,30 @@
+/* ---------------------------------------------------------------------------
+   Typefaces — self-hosted, no network dependency.
+   WorkSans      : interface / body
+   SometypeMono  : labels, chapter numerals, machine voice
+   Marginalia    : the handwriting that fills the journal
+   --------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'WorkSans';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/fonts/WorkSans.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SometypeMono';
+  font-style: normal;
+  font-weight: 400 500;
+  src: url('/fonts/SometypeMono.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Marginalia';
+  font-style: normal;
+  font-weight: 400 700;
+  src: url('/fonts/Marginalia.woff2') format('woff2');
+  font-display: block;
+}

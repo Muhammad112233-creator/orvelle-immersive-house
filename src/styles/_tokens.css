@@ -1,0 +1,97 @@
+/* ---------------------------------------------------------------------------
+   Design tokens.
+
+   Everything in the interface is sized from --base-text so the whole UI
+   scales with the viewport instead of with a handful of breakpoints.
+   --------------------------------------------------------------------------- */
+
+:root {
+  /* ---- fluid type root ------------------------------------------------- */
+  --base-text: calc(10px * var(--h-demult, 1));
+  --padding: max(6px, calc(var(--base-text) * 0.15));
+
+  /* ---- palette --------------------------------------------------------- */
+  --ui-color-bg-primary: #0c0f60;
+  --ui-color-primary: #fff;
+  --ui-color-primary-hover: #000;
+  --ui-color-white: #fff;
+  --ui-color-black: #000;
+  --ui-color-yellow: #ffe100;
+  --ui-color-paper: #ffedd9;
+  --ui-color-beige: #fcf5e6;
+  --ui-color-blue: #265adf;
+  --ui-color-red: #c60000;
+  --ui-color-viewer-red: #d81219;
+  --ui-color-viewer-beige: #eee2b7;
+  --ui-color-phone-beige: #d7c8b1;
+  --ui-color-ink: #1b1b1b;
+
+  /* ---- motion ---------------------------------------------------------- */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-paper: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --header-height: 1.5em;
+}
+
+@media (min-width: 1440px) and (max-width: 1899px) {
+  :root { --base-text: calc((1.0869565217vw - 5.652173913px) * var(--h-demult, 1)); }
+}
+
+@media (min-width: 1900px) {
+  :root { --base-text: calc(15px * var(--h-demult, 1)); }
+}
+
+/* Short viewports get a gentle demultiplier so the UI never crowds itself. */
+@media (max-height: 700px) and (min-width: 1024px) {
+  :root { --h-demult: 0.88; }
+}
+
+/* ---------------------------------------------------------------------------
+   Animation vocabulary shared across the whole experience.
+   --------------------------------------------------------------------------- */
+
+@keyframes shake1 {
+  10%, 90% { transform: translate(-0.5px); }
+  20%, 80% { transform: translate(1px); }
+  30%, 50%, 70% { transform: translate(-2px); }
+  40%, 60% { transform: translate(2px); }
+}
+
+@keyframes jitter-subtle {
+  0%, 100% { opacity: 1;   transform: translate(0) rotate(0); }
+  25%      { opacity: .8;  transform: translate(-0.2px, 0.2px) rotate(-1deg); }
+  50%      { opacity: .9;  transform: translate(0.2px, -0.2px) rotate(1deg); }
+  75%      { opacity: .7;  transform: translate(-0.2px, -0.2px) rotate(0); }
+}
+
+@keyframes ken-burns {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes blob-pulse {
+  0%, 100% { transform: scale(1)    rotate(0deg); }
+  33%      { transform: scale(1.08) rotate(6deg); }
+  66%      { transform: scale(0.96) rotate(-5deg); }
+}
+
+@keyframes paper-breathe {
+  0%, 100% { transform: rotate(-0.4deg) translateY(0); }
+  50%      { transform: rotate(0.35deg) translateY(-2px); }
+}
+
+@keyframes grain-shift {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(-2%, -3%); }
+  20%  { transform: translate(-8%, 2%); }
+  30%  { transform: translate(3%, -6%); }
+  40%  { transform: translate(-3%, 6%); }
+  50%  { transform: translate(-8%, 4%); }
+  60%  { transform: translate(5%, 0); }
+  70%  { transform: translate(0, 7%); }
+  80%  { transform: translate(-6%, 0); }
+  90%  { transform: translate(4%, -4%); }
+  100% { transform: translate(0, 0); }
+}

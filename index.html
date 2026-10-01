@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=cover"
+    />
+    <title>Orvelle — A Room We Never Left</title>
+    <meta name="title" content="Orvelle — A Room We Never Left" />
+    <meta
+      name="description"
+      content="Step inside the house of Orvelle and uncover the story written in its margins."
+    />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="application-name" content="Orvelle" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#0c0f60" />
+    <meta name="apple-mobile-web-app-title" content="Orvelle" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Orvelle — A Room We Never Left" />
+    <meta property="og:site_name" content="Orvelle" />
+    <meta
+      property="og:description"
+      content="Step inside the house of Orvelle and uncover the story written in its margins."
+    />
+    <meta property="og:image" content="./share.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="./share.png" />
+    <meta name="google" content="notranslate" />
+
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <!-- ======================================================================
+     Legacy-browser gate. The experience needs WebGL2 + modern syntax.
+     ====================================================================== -->
+    <script>
+      (function (w, d) {
+        var old = (w.isOldBrowser =
+          !!~d.location.search.toLowerCase().indexOf("oldbrowser") ||
+          !!(function () {
+            try {
+              new Function('import("")');
+              eval(
+                "let {w:a} = {w:async(...x)=>await x()}; class T { static #a = 0; b = 2; } let t = window?.t ?? 0;",
+              );
+              var canvas = d.createElement("canvas");
+              if (!canvas.getContext("webgl2")) return true;
+            } catch (e) {
+              return true;
+            }
+          })());
+        d.documentElement.classList.toggle("no-js", old);
+      })(window, document);
+    </script>
+
+    <!-- ======================================================================
+     Critical CSS — the preloader paints before any JS module is parsed.
+     ====================================================================== -->
+    <style>
+      :root {
+        --bg-color: #0c0f60;
+        --base-text: calc((10px) * var(--h-demult, 1));
+      }
+      @media (min-width: 1440px) and (max-width: 1899px) {
+        :root {
+          --base-text: calc(
+            (1.0869565217vw - 5.652173913px) * var(--h-demult, 1)
+          );
+        }
+      }
+      @media (min-width: 1900px) {
+        :root {
+          --base-text: calc((15px) * var(--h-demult, 1));
+        }
+      }
+
+      html {
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        -webkit-touch-callout: none;
+        font-size: 10px;
+        line-height: 1.5;
+        background: #0c0f60;
+      }
+      body {
+        margin: 0;
+        background: #0c0f60;
+      }
+
+      #preloader {
+        --base-letter-spacing: 4px;
+        --base-font-size: 16px;
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "WorkSans", "Helvetica Neue", Arial, sans-serif;
+        color: #fff;
+        text-transform: uppercase;
+      }
+      #preloader * {
+        box-sizing: border-box;
+      }
+
+      #preloader .preloader-sound {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        gap: 0.25em;
+        justify-content: center;
+        width: 100%;
+        padding-top: 40px;
+        margin-top: 5vmin;
+        font-size: var(--base-font-size);
+        font-weight: 400;
+        line-height: 1;
+        opacity: 0;
+      }
+      #preloader .preloader-sound svg {
+        width: 3em;
+        display: block;
+      }
+      #preloader .preloader-sound svg path {
+        stroke: #fff !important;
+      }
+      #preloader .preloader-sound .sound-text {
+        display: inline-block;
+        align-self: center;
+      }
+
+      #preloader .preloader-wrapper {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        max-width: 325px;
+        height: 100%;
+      }
+      #preloader .preloader-title {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        font-size: 32px;
+        line-height: 1;
+        color: #fff;
+      }
+      #preloader .preloader-headlines {
+        position: absolute;
+        top: 1em;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        width: calc(100% + var(--base-letter-spacing));
+        height: 100%;
+        font-size: 0.5em;
+        font-weight: 700;
+        letter-spacing: var(--base-letter-spacing);
+        opacity: 0;
+        transform: translateY(calc(50% - 0.5em));
+      }
+      #preloader .preloader-main {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: calc(100% + 4px);
+        padding-top: 1.5em;
+        font-weight: 700;
+      }
+      #preloader .preloader-main .line {
+        display: flex;
+        justify-content: space-between;
+        opacity: 0;
+      }
+      #preloader .preloader-main .line span {
+        letter-spacing: var(--base-letter-spacing);
+      }
+
+      #preloader .preloader-content {
+        margin-top: 3.75em;
+        font-size: var(--base-font-size);
+        line-height: 1.1;
+        text-align: center;
+        text-transform: none;
+      }
+      #preloader .preloader-text {
+        width: 85%;
+        margin: 0 auto;
+        line-height: 1.2;
+        opacity: 0;
+      }
+
+      #preloader .preloader-btn-container {
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: calc(6vh + env(safe-area-inset-bottom));
+        margin: 0 auto;
+        opacity: 0;
+        text-align: center;
+      }
+      #preloader .preloader-btn {
+        position: relative;
+        display: inline-flex;
+        gap: 1.15em;
+        justify-content: center;
+        height: 4.8em;
+        padding: 0 1.8em;
+        margin-top: 1.25em;
+        font-size: var(--base-text);
+        pointer-events: none;
+        cursor: pointer;
+        background-color: #fff;
+        opacity: 0;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 100% 100%, 0 100%);
+        transition:
+          opacity 0.3s ease,
+          transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+          clip-path 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      #preloader .preloader-btn:hover {
+        clip-path: polygon(
+          0 0,
+          calc(100% - 1.6em) 0,
+          100% 1.6em,
+          100% 100%,
+          0 100%
+        );
+        transform: rotate(-2deg);
+      }
+      #preloader .preloader-btn:hover .preloader-btn__flap {
+        transform: scale(1);
+      }
+      #preloader .preloader-btn .icon {
+        align-self: center;
+        width: 1.5em;
+      }
+      #preloader .preloader-btn .icon svg {
+        display: block;
+        width: 100%;
+      }
+      #preloader .preloader-btn .label {
+        align-self: center;
+        font-size: 1.4em;
+        color: #000;
+      }
+      #preloader.loaded .preloader-btn {
+        pointer-events: auto;
+        opacity: 1;
+      }
+      #preloader .preloader-btn__flap {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1.6em;
+        height: 1.6em;
+        pointer-events: none;
+        background: linear-gradient(
+          225deg,
+          #ffffffea 49%,
+          #f0f0f0 51%,
+          #dedede
+        );
+        border-bottom-left-radius: 0.8em;
+        transform: scale(0);
+        transform-origin: top right;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      #preloader .preloader-background {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-color);
+        transform-origin: bottom center;
+      }
+      #preloader .preloader-background::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        height: 100%;
+        content: "";
+        background: #0c0f60;
+      }
+
+      #preloader .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        margin: 0;
+        width: 2em;
+        height: 2em;
+        border: 3px solid #fff;
+        border-top-color: transparent;
+        border-radius: 2000px;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+        animation: preloader-spinner 1s linear infinite;
+      }
+      #preloader.loaded .spinner {
+        pointer-events: none;
+        opacity: 0;
+      }
+      @keyframes preloader-spinner {
+        0% {
+          transform: translate(-50%) rotate(0);
+        }
+        100% {
+          transform: translate(-50%) rotate(360deg);
+        }
+      }
+
+      #preloader.is-leaving {
+        pointer-events: none;
+      }
+
+      .no-js #preloader {
+        display: none;
+      }
+      .no-js-message {
+        display: none;
+      }
+      .no-js .no-js-message {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        z-index: 99;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.6rem;
+        line-height: 1.5;
+        color: #fff;
+        background: #0c0f60;
+      }
+    </style>
+  </head>
+
+  <body>
+    <aside id="preloader">
+      <div class="preloader-wrapper">
+        <div class="preloader-sound">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 66 66"
+            aria-hidden="true"
+          >
+            <path
+              d="m39.93 26.48.13.22c2.16 3.6 2.11 8.11-.13 11.66m4.8-15.63.27.36c4.32 5.87 4.22 13.23-.27 19.03m-21.3-4.53-4.78-.95c-.8-.16-1.38-.84-1.41-1.65l-.2-5.1c-.03-.84.53-1.58 1.35-1.77l6.26-1.49 7.44-6.33c1.15-.98 2.92-.14 2.89 1.37l-.45 21.91c-.03 1.5-1.8 2.27-2.92 1.28l-8.18-7.26Z"
+              style="fill: none; stroke: #000; stroke-width: 1.74px"
+            />
+          </svg>
+          <span class="sound-text js-sound-text">Sound On</span>
+        </div>
+
+        <div class="preloader-container">
+          <div class="preloader-title">
+            <div class="preloader-headlines">
+              <span>orvelle</span><span>presents</span>
+            </div>
+            <div class="preloader-main">
+              <div class="line line--1"><span>A</span><span>Room</span></div>
+              <div class="line line--2"><span>we</span><span>never</span></div>
+              <div class="line line--3"><span>left</span></div>
+            </div>
+          </div>
+
+          <div class="preloader-content">
+            <div class="preloader-text js-preloader-text">
+              Step inside the house and uncover the story written in its margins
+            </div>
+            <div class="preloader-btn-container">
+              <figure class="spinner"></figure>
+              <div class="preloader-btn" role="button" tabindex="0">
+                <div class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 15 20"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3.24 17.49 3.09 2.81l3-.03M7.44 11.2h.89M12.76 17.3l-6.45 1.79L6.12.86l6.48 1.71.15 14.73Z"
+                      style="fill: none; stroke: #000"
+                    />
+                  </svg>
+                </div>
+                <span class="label js-preloader-btn">Enter</span>
+                <span class="preloader-btn__flap"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figure class="preloader-background"></figure>
+    </aside>
+
+    <div class="no-js-message">
+      <p>
+        The device or browser you're using is not up to date.<br />Please try
+        another browser or device to access this content.
+      </p>
+    </div>
+
+    <div id="app"></div>
+
+    <noscript>
+      <div
+        style="
+          position: fixed;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #0c0f60;
+          color: #fff;
+          font-family: sans-serif;
+          font-size: 16px;
+          text-align: center;
+          padding: 2rem;
+          z-index: 100;
+        "
+      >
+        This experience requires JavaScript.
+      </div>
+    </noscript>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

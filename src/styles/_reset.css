@@ -1,0 +1,64 @@
+/* ---------------------------------------------------------------------------
+   Reset — scoped under html so it never leaks into embedded content.
+   --------------------------------------------------------------------------- */
+
+html {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-touch-callout: none;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+html body, html div, html span, html iframe, html h1, html h2, html h3, html h4,
+html h5, html h6, html p, html blockquote, html pre, html a, html abbr, html address,
+html big, html cite, html code, html del, html dfn, html em, html img, html ins,
+html kbd, html q, html s, html samp, html small, html strike, html strong, html sub,
+html sup, html tt, html var, html b, html u, html i, html center, html dl, html dt,
+html dd, html ol, html ul, html li, html fieldset, html form, html label, html legend,
+html table, html caption, html tbody, html tfoot, html thead, html tr, html th, html td,
+html article, html aside, html canvas, html details, html embed, html figure,
+html figcaption, html footer, html header, html hgroup, html menu, html nav,
+html output, html ruby, html section, html summary, html time, html mark, html audio,
+html video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+html body { display: block; -webkit-text-size-adjust: 100%; }
+html *, html *::before, html *::after { box-sizing: border-box; }
+html ul, html ol { list-style: none; }
+
+html article, html aside, html details, html figcaption, html figure, html footer,
+html header, html hgroup, html menu, html nav, html section { display: block; }
+
+html img, html video, html svg { display: block; max-width: 100%; }
+html a { color: inherit; text-decoration: inherit; touch-action: pan-x pan-y; }
+html button *, html a * { pointer-events: none; touch-action: pan-x pan-y; }
+
+html button, html input, html textarea, html select {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+  background: inherit;
+  outline: none;
+}
+
+html button {
+  cursor: pointer;
+  border: none;
+  appearance: none;
+  touch-action: pan-x pan-y;
+}
+
+html textarea { overflow: auto; vertical-align: top; resize: vertical; }

@@ -1,0 +1,75 @@
+# ---------------------------------------------------------------------------
+# Build the site and publish it to GitHub Pages.
+#
+# You upload SOURCE only (src/, public/, index.html, package.json,
+# package-lock.json, vite.config.js). This workflow installs the dependencies,
+# runs the Vite build and serves the resulting dist/ folder. You never have to
+# upload node_modules/ or dist/ yourself.
+#
+# One-time setup in your repository:
+#   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
+# ---------------------------------------------------------------------------
+
+name: Deploy site to GitHub Pages
+
+on:
+  # Build on every push to the default branch.
+  push:
+    branches: [main]
+  # ...and allow a manual run from the Actions tab.
+  workflow_dispatch:
+
+# Permissions the deploy job needs to publish to Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If you push twice quickly, let the newer build win, but never cancel a
+# deployment that is already mid-flight.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # `npm ci` installs the exact versions in package-lock.json.
+      # This is why the lockfile must be uploaded with the rest of the source.
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # vite.config.js sets `base: './'` and the router uses hash history, so
+      # the build works unchanged at a user site (user.github.io) or a project
+      # site (user.github.io/repo-name). Nothing here needs the repo name.
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the built site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
